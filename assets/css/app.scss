@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700&display=swap');
+
+@font-face {
+    font-family: 'AlphaLigue';
+    src: url('~@/fonts/AlphaLigue.ttf');
+}
+
+// the ~ allows you to reference things in node_modules
+@import '~bootstrap/dist/css/bootstrap-grid.min.css';
+@import '~ionicons/dist/css/ionicons.min.css';
+
+// Base
+@import 'base/_vars';
+@import 'base/_base';
+
+// Components
+@import 'components/_heading';
+@import 'components/_button';
+@import 'components/_input';
+@import 'components/_navigation';
+
+// Pages
+@import 'pages/_login';
+
+@import "tailwindcss/utilities";

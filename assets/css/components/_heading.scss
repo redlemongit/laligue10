@@ -1,0 +1,9 @@
+.heading {
+    color: black;
+    margin-bottom: $marginBase;
+    &.heading--brand {
+        font-family: 'AlphaLigue', sans-serif;
+        font-size: $fontSize2XL;
+        text-transform: uppercase;
+    }
+}

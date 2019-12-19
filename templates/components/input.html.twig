@@ -1,0 +1,35 @@
+{# Common Variables #}
+{% set input_attr = input_attr|default({}) %}
+{% set input_modifiers = input_modifiers|default([]) %}
+{% set input_modifierList = {} %}
+
+{# Component Variables #}
+{% set input_class = input_class|default('') %}
+{% set input_type = input_type|default('text') %}
+{% set input_content = input_content|default('') %}
+
+{# Component #}
+{% if input_type == 'checkbox' %}
+    <label class="checkbox">
+{% endif %}
+
+<input type="{{ input_type }}" class="input{{ input_class is not empty ? ' '~input_class }}{%
+    for modifier in input_modifiers
+%}{{modifier in input_modifierList|keys ? ' '~input_modifierList[modifier]}}{%
+    endfor
+%}"{%
+    for attr in input_attr|keys
+%}{{ ' '~attr }}="{{input_attr[attr]}}"{%
+    endfor
+%}>
+{% if block('input__content') is defined %}
+    {{ block('input__content') }}
+{% else %}
+    {{ input_content|raw }}
+{% endif %}
+</input>
+
+{% if input_type == 'checkbox' %}
+        <span class="checkmark"></span>
+    </label>
+{% endif %}

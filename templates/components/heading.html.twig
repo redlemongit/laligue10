@@ -1,0 +1,28 @@
+{# Common Variables #}
+{% set heading_attr = heading_attr|default({}) %}
+{% set heading_modifiers = heading_modifiers|default(['brand']) %}
+{% set heading_modifierList = {
+    'brand': 'heading--brand',
+} %}
+
+{# Component Variables #}
+{% set heading_tag = heading_tag|default('h1') %}
+{% set heading_class = heading_class|default('') %}
+{% set heading_content = heading_content|default('') %}
+
+{# Component #}
+<{{ heading_tag }} class="heading{{ heading_class is not empty ? ' '~heading_class }}{%
+    for modifier in heading_modifiers
+%}{{modifier in heading_modifierList|keys ? ' '~heading_modifierList[modifier]}}{%
+    endfor
+%}"{%
+    for attr in heading_attr|keys
+%}{{ ' '~attr }}="{{heading_attr[attr]}}"{%
+    endfor
+%}>
+{% if block('heading__content') is defined %}
+    {{ block('heading__content') }}
+{% else %}
+    {{ heading_content|raw }}
+{% endif %}
+</{{ heading_tag }}>

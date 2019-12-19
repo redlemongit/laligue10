@@ -1,0 +1,27 @@
+{# Common Variables #}
+{% set link_attr = link_attr|default({}) %}
+{% set link_modifiers = link_modifiers|default([]) %}
+{% set link_modifierList = {} %}
+
+{# Component Variables #}
+{% set link_tag = link_tag|default('a') %}
+{% set link_href = link_href|default('') %}
+{% set link_class = link_class|default('') %}
+{% set link_content = link_content|default('') %}
+
+{# Component #}
+<{{ link_tag }} href="{{ link_href }}" class="link{{ link_class is not empty ? ' '~link_class }}{%
+    for modifier in link_modifiers
+%}{{modifier in link_modifierList|keys ? ' '~link_modifierList[modifier]}}{%
+    endfor
+%}"{%
+    for attr in link_attr|keys
+%}{{ ' '~attr }}="{{link_attr[attr]}}"{%
+    endfor
+%}>
+{% if block('link__content') is defined %}
+    {{ block('link__content') }}
+{% else %}
+    {{ link_content|raw }}
+{% endif %}
+</{{ link_tag }}>

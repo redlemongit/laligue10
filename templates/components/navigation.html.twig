@@ -1,0 +1,26 @@
+{# Common Variables #}
+{% set navigation_attr = navigation_attr|default({}) %}
+{% set navigation_modifiers = navigation_modifiers|default([]) %}
+{% set navigation_modifierList = {} %}
+
+{# Component Variables #}
+{% set navigation_class = navigation_class|default('') %}
+{% set navigation_links = navigation_links|default([]) %}
+
+<header class="navigation{{ navigation_class is not empty ? ' '~navigation_class }}{%
+    for modifier in navigation_modifiers
+%}{{modifier in navigation_modifierList|keys ? ' '~navigation_modifierList[modifier]}}{%
+    endfor
+%}"{%
+    for attr in navigation_attr|keys
+%}{{ ' '~attr }}="{{navigation_attr[attr]}}"{%
+    endfor
+%}>
+    <nav>
+        <ul>
+            {% for link in navigation_links %}
+                <li><a href=""><i class="icon ion-md-{{link.icon}}"></i>{{ link.name }}</a></li>
+            {% endfor %}
+        </li>
+    </nav>
+</header>

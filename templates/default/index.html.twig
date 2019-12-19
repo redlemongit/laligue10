@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% set navigation = './components/navigation.html.twig' %}
+
+{% set links = [
+    {
+        name: 'Planning',
+        icon: 'calendar'
+    },
+    {
+        name: 'Agenda',
+        icon: 'bed'
+    },
+    {
+        name: 'Rés. salle',
+        icon: 'business'
+    },
+    {
+        name: 'Rés. fournitures',
+        icon: 'cube'
+    },
+    {
+        name: 'Rés. véhicule',
+        icon: 'car'
+    },
+    {
+        name: 'Paramètres',
+        icon: 'settings'
+    },
+    {
+        name: 'Déconnexion',
+        icon: 'power'
+    },
+] %}
+
+{% block body %}
+<div class="flex">
+    {% include navigation with {
+        navigation_links: links,
+    } %}
+    <div class="flex-1">
+        <h1>Your lucky number is {{ number }}</h1>
+    </div>
+</div>
+{% endblock %}

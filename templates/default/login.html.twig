@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% set heading = './components/heading.html.twig' %}
+{% set input = './components/input.html.twig' %}
+{% set button = './components/button.html.twig' %}
+{% set link = './components/link.html.twig' %}
+
+{% block body %}
+    <div id="loginPage">
+        <div class="container">
+            <div class="loginPage__login">
+                {% include heading with {
+                    heading_content: 'Intranet',
+                } %}
+                <form class="loginPage__login__form" action="" method="">
+                    {% include input with {
+                        input_attr: {placeholder: 'Identifiant'},
+                    } %}
+                    {% include input with {
+                        input_type: 'password',
+                        input_attr: {placeholder: 'Mot de passe'},
+                    } %}
+                    {# {% include input with {
+                        input_type: 'checkbox',
+                        input_content: 'Je ne suis pas un robot',
+                    } %} #}
+                    {% include button with {
+                        button_content: 'Connexion',
+                    } %}
+                    {% include link with {
+                        link_content: 'Mot de passe oublié ?',
+                    } %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}

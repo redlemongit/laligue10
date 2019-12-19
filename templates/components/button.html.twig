@@ -1,0 +1,28 @@
+{# Common Variables #}
+{% set button_attr = button_attr|default({}) %}
+{% set button_modifiers = button_modifiers|default([]) %}
+{% set button_modifierList = {
+    'secondary': 'button--secondary',
+} %}
+
+{# Component Variables #}
+{% set button_tag = button_tag|default('button') %}
+{% set button_class = button_class|default('') %}
+{% set button_content = button_content|default('') %}
+
+{# Component #}
+<{{ button_tag }} class="button{{ button_class is not empty ? ' '~button_class }}{%
+    for modifier in button_modifiers
+%}{{modifier in button_modifierList|keys ? ' '~button_modifierList[modifier]}}{%
+    endfor
+%}"{%
+    for attr in button_attr|keys
+%}{{ ' '~attr }}="{{button_attr[attr]}}"{%
+    endfor
+%}>
+{% if block('button__content') is defined %}
+    {{ block('button__content') }}
+{% else %}
+    {{ button_content|raw }}
+{% endif %}
+</{{ button_tag }}>
