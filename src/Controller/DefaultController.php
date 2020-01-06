@@ -12,7 +12,7 @@ class DefaultController extends AbstractController
      */
     public function default()
     {
-        $number = mt_rand(0, 50);
+        $number = mt_rand(0, 30);
         return $this->render('default/index.html.twig', array(
             'number' => $number,
         ));
